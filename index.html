@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GP Regression Results</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding-top: 20px; }
+    .img-col { flex: 1; padding: 10px; }
+    .d-flex { display: flex; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">GP Regression Results</h1>
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="sensor-tab" data-bs-toggle="tab" href="#sensor" role="tab" aria-controls="sensor" aria-selected="true">Sensor Data</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="simulated-tab" data-bs-toggle="tab" href="#simulated" role="tab" aria-controls="simulated" aria-selected="false">Simulated Field</a>
+      </li>
+    </ul>
+    <!-- Tab Content -->
+    <div class="tab-content mt-4" id="myTabContent">
+      <!-- Sensor Data Tab Pane -->
+      <div class="tab-pane fade show active" id="sensor" role="tabpanel" aria-labelledby="sensor-tab">
+        <!-- Dropdown Form (for display purposes only - non-functional in static export) -->
+        <form method="get" class="row g-3 mb-4">
+          <input type="hidden" name="tab" value="sensor">
+          <div class="col-md-4">
+            <label for="dateSelect" class="form-label">Date</label>
+            <select name="date" id="dateSelect" class="form-select">
+              <option value="dec6" selected>dec6</option>
+              <option value="dec17">dec17</option>
+              <option value="feb15">feb15</option>
+              <option value="jan31">jan31</option>
+              <option value="oct3">oct3</option>
+              <option value="sep19">sep19</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="sensorSelect" class="form-label">Sensor Variable</label>
+            <select name="sensor" id="sensorSelect" class="form-select">
+              <option value="Chlorophyll_ug_L" selected>Chlorophyll_ug_L</option>
+              <option value="Conductivity_uS_cm">Conductivity_uS_cm</option>
+              <option value="Depth_Sonar">Depth_Sonar</option>
+              <option value="Dissolved_Oxygen_Concentration_mg_L">Dissolved_Oxygen_Concentration_mg_L</option>
+              <option value="Dissolved_Oxygen_Saturation">Dissolved_Oxygen_Saturation</option>
+              <option value="pH">pH</option>
+              <option value="Temperature_°C">Temperature_°C</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="kernelSelect" class="form-label">Kernel</label>
+            <select name="kernel" id="kernelSelect" class="form-select">
+              <option value="Exponential" selected>Exponential</option>
+              <option value="Squared Exponential">Squared Exponential</option>
+              <option value="Matern 3_2">Matern 3_2</option>
+              <option value="Matern 5_2">Matern 5_2</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">View Results</button>
+          </div>
+        </form>
+        <!-- Sensor Data Images: Mean Prediction and Uncertainty Map -->
+        <div class="d-flex">
+          <div class="img-col">
+            <h4>Mean Prediction</h4>
+            <img src="results/dec6/Chlorophyll_ug_L/kernels/Exponential/mean_dec6_Chlorophyll_ug_L_Exponential.png" alt="Sensor Mean Prediction" class="img-fluid">
+          </div>
+          <div class="img-col">
+            <h4>Uncertainty Map</h4>
+            <img src="results/dec6/Chlorophyll_ug_L/kernels/Exponential/std_dec6_Chlorophyll_ug_L_Exponential.png" alt="Sensor Uncertainty" class="img-fluid">
+          </div>
+        </div>
+      </div>
+      <!-- Simulated Field Tab Pane -->
+      <div class="tab-pane fade" id="simulated" role="tabpanel" aria-labelledby="simulated-tab">
+        <h2>Simulated Field Results</h2>
+        <!-- Display simulated field images in a grid layout -->
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <h4>Exponential</h4>
+            <img src="results/arti/exp.png" alt="Simulated Field Exponential" class="img-fluid">
+          </div>
+          <div class="col-md-6 mb-4">
+            <h4>Squared Exponential</h4>
+            <img src="results/arti/sqexp.png" alt="Simulated Field Squared Exponential" class="img-fluid">
+          </div>
+          <div class="col-md-6 mb-4">
+            <h4>Matern 3_2</h4>
+            <img src="results/arti/3_2.png" alt="Simulated Field Matern 3_2" class="img-fluid">
+          </div>
+          <div class="col-md-6 mb-4">
+            <h4>Matern 5_2</h4>
+            <img src="results/arti/5_2.png" alt="Simulated Field Matern 5_2" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
